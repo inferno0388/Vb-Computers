@@ -1,0 +1,13 @@
+.sidebar .sidebar-brand img{
+    width:115px;
+}
+.toggled .sidebar-brand img{
+    width:90px;
+}
+
+@media only screen and (max-width: 767px){
+    .sidebar .sidebar-brand img{
+        width:90px;
+    }
+    
+}

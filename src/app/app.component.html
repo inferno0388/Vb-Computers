@@ -1,0 +1,16 @@
+<div id="wrapper">
+  <!-- Content Wrapper -->
+  <app-sidebar class="app-sidebar" *ngIf="isShow"></app-sidebar>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header *ngIf="isShow"></app-header>
+      <section>
+        <!-- <router-outlet></router-outlet> -->
+        <router-outlet (activate)="showHideNav($event)"></router-outlet>
+    </section> 
+    </div>
+    <app-footer *ngIf="isShow"></app-footer>
+  </div>
+</div>

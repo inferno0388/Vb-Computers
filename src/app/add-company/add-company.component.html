@@ -1,0 +1,90 @@
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Generate Bill</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                    <div class="col-xl-12 col-md-12 mb-4">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Add Company</h6>
+                        </div>
+                        <div class="card-body">
+                            <form class="user"  [formGroup]="rowForm" (ngSubmit)="submitCompany()">
+                                <div class="form-group row mb-0">
+                                   
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Company Name:</label>
+                                        <input type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Company Name..." formControlName="companyName" >
+                                            <div *ngIf="rowForm.get('companyName')?.invalid && rowForm.get('companyName')?.touched" class="text-danger">
+                                                Company Name is required.
+                                            </div>
+                                    </div>
+        
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Company Location</label>
+                                        <input type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="location of Company" formControlName="address" >
+                                            <div *ngIf="rowForm.get('address')?.invalid && rowForm.get('address')?.touched" class="text-danger">
+                                                address  is required.
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Company GSTIN: </label>
+                                        <input type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Company GSTIN...." formControlName="gstin" >
+                                            <div *ngIf="rowForm.get('gstin')?.invalid && rowForm.get('gstin')?.touched" class="text-danger">
+                                                Comapny GSTIN is required.
+                                            </div>   
+                                    </div>   
+                                    
+                                    <div class="col-sm-3 mb-3">
+                                        <label>CIN number</label>
+                                        <input type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Cin Number..." formControlName="cinNumber">
+                                            <div *ngIf="rowForm.get('cinNumber')?.invalid && rowForm.get('cinNumber')?.touched" class="text-danger">
+                                                CIN Number is required.
+                                            </div>    
+                                    </div>
+                                    
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Contact Number 1</label>
+                                        <input type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Contact Number... " formControlName="contactNo1">
+                                            <div *ngIf="rowForm.get('contactNo1')?.invalid && rowForm.get('contactNo1')?.touched" class="text-danger">
+                                                Contact Number is required.
+                                            </div>
+                                    </div>
+        
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Company Email</label>
+                                        <input type="email" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Cin No..." formControlName="companyEmail">
+                                            <div *ngIf="rowForm.get('companyEmail')?.invalid && rowForm.get('companyEmail')?.touched" class="text-danger">
+                                                Company Email is required.
+                                            </div>  
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn shadow-sm btn-primary btn-user" > <i class="fas fa-plus" (click)="demo()"></i> Add Company</button>                           
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                    
+                    </div>
+
+                    </div>
+                    <!-- End Content Row -->
+
+                </div>
+                <!-- /.container-fluid -->

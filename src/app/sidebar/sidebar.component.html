@@ -1,0 +1,74 @@
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" >
+                <div class="sidebar-brand-icon">
+                    <h4><strong>VB Computers</strong></h4>
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/generate-bill']" [routerLinkActive]="['active']">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Generate Bill </span>
+                </a>
+
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/history']" [routerLinkActive]="['active']">
+                    <i class="fas fa-inbox"></i>
+                    <span>History</span>
+                </a>
+
+            </li>
+            <hr class="sidebar-divider">
+
+            <li class="nav-item"  >
+                <a class="nav-link" [routerLink]="['/create-user']" [routerLinkActive]="['active']" *ngIf="validateForRouting()">
+                    <i class="fas fa-user"></i>
+                    <span>Create User</span>
+                </a>
+
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/add-company']" [routerLinkActive]="['active']">
+                    <i class="fas fa-building"></i>
+                    <span>Add Company</span>
+                </a>
+
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline mt-3">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+
+
+        </ul>
+        <!-- End of Sidebar -->

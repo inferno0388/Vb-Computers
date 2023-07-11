@@ -1,0 +1,215 @@
+
+               <!-- Begin Page Content -->
+               <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                    <h1 class="h3 mb-0 text-gray-800">DASHBOARD</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-3 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2 card-pointer" [routerLink]="['/generate-bill']">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">
+                                            MetaPhore</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹<span class="count">215000</span></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-file-alt fa-2x text-gray-300 text-theme"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 mb-4" *ngFor="let item of companyNamesArray ;let indexOfelement=index;">
+                        <div class="card border-left-success shadow h-100 py-2 card-pointer" [routerLink]="['/generate-bill']">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">
+                                            {{ item.companyName }}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <span class="count" style="font-size: 12px;">total users:   </span>
+                                            <span class="count" style="font-size: 12px;">{{ item.totalUsers }}</span>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <span class="count" style="font-size: 12px;">total bills:   </span>
+                                            <span class="count" style="font-size: 12px;">{{ item.totalBills }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <i class="fas fa-file-alt fa-2x text-gray-300 text-theme"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div class="col-xl-3 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">
+                                            Company 2</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹<span class="count">0</span></div>
+                                    </div>
+                                    <i class="fas fa-users fa-2x text-gray-300 text-theme"></i>
+                                     <div class="col-auto">
+                                        <button (click)="getCompanies()"><i class="fas fa-users fa-2x text-gray-300 text-theme"></i></button>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  -->
+                    <!-- <div class="col-xl-3 col-md-3 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">
+                                            Company 3</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹<span class="count">0</span></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fas fa-file-medical fa-2x text-gray-300 text-theme"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">
+                                            Company 4</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹<span class="count">0</span></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fas fa-file-alt fa-2x text-gray-300 text-theme"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+ 
+                </div>
+
+                <!-- Content Row -->
+
+                <!-- <div class="card-footer">
+                    <button type="submit" class="btn shadow-sm btn-primary btn-user" (click)="toggleForm()" > <i class="fas fa-plus"></i> Add Company</button>                           
+                </div> -->
+
+
+                <div *ngIf="false">
+                    <!-- Your form markup goes here -->
+
+                    <form class="user"  [formGroup]="rowForm" >
+                        <div class="form-group row mb-0">
+                           
+                            <div class="col-sm-3 mb-3">
+                                <label>Company Name:</label>
+                                <input type="text" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Enter Company Name..." formControlName="companyName" >
+                                    <div *ngIf="rowForm.get('companyName')?.invalid && rowForm.get('companyName')?.touched" class="text-danger">
+                                        Company Name is required.
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-3 mb-3">
+                                <label>Company Location</label>
+                                <input type="text" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="location of Company" formControlName="address" >
+                                    <div *ngIf="rowForm.get('address')?.invalid && rowForm.get('address')?.touched" class="text-danger">
+                                        address  is required.
+                                    </div>
+                            </div>
+                            <div class="col-sm-3 mb-3">
+                                <label>Company GSTIN: </label>
+                                <input type="text" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Enter Company GSTIN...." formControlName="companyGstin" >
+                                    <div *ngIf="rowForm.get('companyGstin')?.invalid && rowForm.get('companyGstin')?.touched" class="text-danger">
+                                        Comapny GSTIN is required.
+                                    </div>   
+                            </div>   
+                            
+                            <div class="col-sm-3 mb-3">
+                                <label>CIN number</label>
+                                <input type="text" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Enter Cin No..." formControlName="cinNo">
+                                    <div *ngIf="rowForm.get('cinNo')?.invalid && rowForm.get('cinNo')?.touched" class="text-danger">
+                                        CIN Number is required.
+                                    </div>    
+                            </div>
+                            
+                            <div class="col-sm-3 mb-3">
+                                <label>Contact Number 1</label>
+                                <input type="number" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Enter Contact Number... " formControlName="contactNo1">
+                                    <div *ngIf="rowForm.get('contactNo1')?.invalid && rowForm.get('contactNo1')?.touched" class="text-danger">
+                                        Contact Number is required.
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-3 mb-3">
+                                <label>Company Email</label>
+                                <input type="email" class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Enter Cin No..." formControlName="companyEmail">
+                                    <div *ngIf="rowForm.get('companyEmail')?.invalid && rowForm.get('companyEmail')?.touched" class="text-danger">
+                                        Company Email is required.
+                                    </div>  
+                            </div>
+                            
+                            <!-- <div class="col-sm-3 mb-3">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control form-control-user"
+                                    id="nameInput" placeholder="Enter Quantity" formControlName="quantity">
+                                    <div *ngIf="rowForm.get('quantity')?.invalid && rowForm.get('quantity')?.touched" class="text-danger">
+                                        quantity is required.
+                                    </div>
+                            </div>
+                            <div class="col-sm-3 mb-3">
+                                <label>Rate</label>
+                                <input type="number" class="form-control form-control-user"
+                                    id="nameInput" placeholder="Enter Rate" formControlName="rate">
+                                    <div *ngIf="rowForm.get('rate')?.invalid && rowForm.get('rate')?.touched" class="text-danger">
+                                        RATE is required.
+                                    </div>
+                            </div>
+                            <div class="col-sm-3 mb-3">
+                                <label class="control-label">GST (%)</label>
+                                <input type="number" class="form-control form-control-user"
+                                id="nameInput" placeholder="GST (%)"  formControlName="gst">
+                                <div *ngIf="rowForm.get('gst')?.invalid && rowForm.get('gst')?.touched" class="text-danger">
+                                   GST is required.
+                                </div>
+                            </div> -->
+                                
+                            <div class="col-sm-3 mb-3">
+                                <label>Image</label>
+                                <input type="file" class="form-control-file"  formControlName="image">
+                                <!-- (change)="onImageSelect($event)" -->
+                            </div>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn shadow-sm btn-primary btn-user" > <i class="fas fa-plus"></i> Add Company</button>                           
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
