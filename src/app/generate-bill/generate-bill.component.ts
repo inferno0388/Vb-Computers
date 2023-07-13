@@ -211,8 +211,9 @@ export class GenerateBillComponent implements OnInit {
       text: `pdf created with name: ${fileName}.pdf`,
       icon: 'success'
     });
-
+    //reset fields and table data
     this.rowForm.reset();
+    this.dataArray= [];
   }
 
 

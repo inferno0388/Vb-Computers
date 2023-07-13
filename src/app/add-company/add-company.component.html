@@ -3,7 +3,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Generate Bill</h1>
+                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Add Company</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -12,7 +12,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Add Company</h6>
+                            <h4 class="m-0 font-weight-bold text-primary">Company Details:</h4>
                         </div>
                         <div class="card-body">
                             <form class="user"  [formGroup]="rowForm" (ngSubmit)="submitCompany()">
@@ -65,10 +65,20 @@
                                     <div class="col-sm-3 mb-3">
                                         <label>Company Email</label>
                                         <input type="email" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Enter Cin No..." formControlName="companyEmail">
+                                            id="exampleInputPassword" placeholder="Enter Email..." formControlName="companyEmail">
                                             <div *ngIf="rowForm.get('companyEmail')?.invalid && rowForm.get('companyEmail')?.touched" class="text-danger">
                                                 Company Email is required.
                                             </div>  
+                                    </div>
+                                    <div class="col-sm-3 mb-3">
+                                        <label>EPF Reg. Number</label>
+                                        <input type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter EPF Number..." formControlName="epfNumber">        
+                                    </div>
+                                    <div class="col-sm-3 mb-3">
+                                        <label>ESIC Reg. number</label>
+                                        <input type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter ESIC Number..." formControlName="esicNumber">         
                                     </div>
                                     
                                     

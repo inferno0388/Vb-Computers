@@ -18,10 +18,11 @@ export class AddCompanyComponent implements OnInit{
       companyName:['', Validators.required],
       gstin:['', Validators.required],
       address:['', Validators.required],
-      contactNo1:['', Validators.required],
+      contactNo1:[''],
       cinNumber:['', Validators.required],  
-      companyEmail:['', Validators.required],  
-      
+      companyEmail:[''],  
+      epfNumber:[''],
+      esicNumber:['']  
     });
   }
 
@@ -44,9 +45,12 @@ export class AddCompanyComponent implements OnInit{
             icon: 'success'
           });
         // console.log(" company is added with name: "+result.companyName+" and id: "+result.id);
-
+          this.rowForm.reset();
       }, (error)=>{
-        const errorMessage = error.error.message || 'An error occurred.';
+        let errorMessage = error.error.message || 'An error occurred.';
+        if(errorMessage == null ){
+          errorMessage= `internal server error`
+        }
         Swal.fire({
           title: 'Error',
           text: errorMessage,
