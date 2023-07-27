@@ -19,8 +19,7 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-sm-3 mb-3 required">
                                         <label class="control-label">Company Name</label>
-                                        <select id="UnitName" #nameCompany class="form-control br" formControlName="companyName" (change)="handleSelectionChange(nameCompany.value)">
-                                            <!-- <option value="0" selected>Select Company Name</option> -->
+                                        <select id="UnitName" #nameSelected class="form-control br" formControlName="companyName" (change)="validateSelection(nameSelected.value)">
                                             <option *ngFor="let company of companies" [value]="company.companyName">{{ company.companyName }}</option>
                                         </select>
                                         
@@ -43,37 +42,41 @@
                                             <div *ngIf="rowForm.get('woPoDate')?.invalid && rowForm.get('woPoDate')?.touched" class="text-danger">
                                                 WO/PO Date is required.
                                             </div>
+                                    </div>  
+                                    
+                                    <div class="col-sm-3 mb-3">
+                                        <label>SAC Number</label>
+                                        <input type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter SAC Number..." formControlName="sacNumber" >
+                                            <div *ngIf="rowForm.get('sacNumber')?.invalid && rowForm.get('sacNumber')?.touched" class="text-danger">
+                                                SAC is required.
+                                            </div>
+                                    </div> 
+                                    
+                                    <div class="col-sm-3 mb-3">
+                                        <label>SAP Number</label>
+                                        <input type="number" class="form-control form-control-user"
+                                            id="sapNumber" #numberForSap placeholder="Enter SAP Number..." formControlName="sapNumber" (input)="getSapNumber(+numberForSap.value)">
+                                            <div *ngIf="rowForm.get('sapNumber')?.invalid && rowForm.get('sapNumber')?.touched" class="text-danger">
+                                                SAP is required.
+                                            </div>
                                     </div>                         
+                                                           
                                     <div class="col-sm-3 mb-3">
                                         <label>Item discription</label>
                                         <input type="text" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Enter Item discription" formControlName="itemDescr" >
+                                            id="exampleInputPassword" placeholder="Item discription" formControlName="itemDescr" >
                                            
-                                    </div>
-                                    <div class="col-sm-3 mb-3">
-                                        <label>HSN Code.</label>
-                                        <input type="number" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Enter HSN Code " formControlName="hsnCode">
-                                            <div *ngIf="rowForm.get('hsnCode')?.invalid && rowForm.get('hsnCode')?.touched" class="text-danger">
-                                                HSN Code is required.
-                                            </div>
                                     </div>
                                     <div class="col-sm-3 mb-3">
                                         <label>Unit</label>
                                         <input type="text" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Enter Unit " formControlName="unit">
+                                            id="exampleInputPassword" placeholder="Unit" formControlName="unit">
                                             <div *ngIf="rowForm.get('unit')?.invalid && rowForm.get('unit')?.touched" class="text-danger">
                                                 Unit is required.
                                             </div>
                                     </div>
-                                    <div class="col-sm-3 mb-3">
-                                        <label>Quantity</label>
-                                        <input type="number" class="form-control form-control-user"
-                                            id="nameInput" placeholder="Enter Quantity" formControlName="quantity">
-                                            <div *ngIf="rowForm.get('quantity')?.invalid && rowForm.get('quantity')?.touched" class="text-danger">
-                                                quantity is required.
-                                            </div>
-                                    </div>
+
                                     <div class="col-sm-3 mb-3">
                                         <label>Rate</label>
                                         <input type="number" class="form-control form-control-user"
@@ -82,14 +85,17 @@
                                                 RATE is required.
                                             </div>
                                     </div>
-                                    <!-- <div class="col-sm-3 mb-3">
-                                        <label class="control-label">GST (%)</label>
+
+                                    <div class="col-sm-3 mb-3">
+                                        <label>Quantity</label>
                                         <input type="number" class="form-control form-control-user"
-                                        id="nameInput" placeholder="GST (%)"  formControlName="gst">
-                                        <div *ngIf="rowForm.get('gst')?.invalid && rowForm.get('gst')?.touched" class="text-danger">
-                                           GST is required.
-                                        </div>
-                                    </div> -->
+                                            id="nameInput" placeholder="Enter Quantity" formControlName="quantity">
+                                            <div *ngIf="rowForm.get('quantity')?.invalid && rowForm.get('quantity')?.touched" class="text-danger">
+                                                quantity is required.
+                                            </div>
+                                    </div>
+                                    
+                                   
                                     <div class="col-sm-3 mb-3">
                                         <label class="control-label">IGST (%)</label>
                                         <input type="number" class="form-control form-control-user"
@@ -114,8 +120,7 @@
                                             SGST is required.
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 mb-3">
-                                    </div>
+                                   
                                     <div class="col-sm-3 mb-3">
                                         <label class="control-label">Amount</label>
                                         <input  type="number" class="form-control form-control-user"
@@ -176,7 +181,8 @@
                                             <th scope="col">WO/PO No.</th>
                                             <th scope="col">WO/PO Date</th>                    
                                             <th scope="col">ITEM DISCRIPTION</th>
-                                            <th scope="col">HSN CODE</th>
+                                            <th scope="col">SAP Number</th>
+                                            <th scope="col">SAC Number</th>
                                             <th scope="col">UNIT</th>
                                             <th scope="col">QUANTITY</th>
                                             <th scope="col">RATE</th>
@@ -196,7 +202,8 @@
                                             <td>{{ item.woPoNumber }}</td>
                                             <td>{{ item.woPoDate }}</td>
                                             <td>{{ item.itemDescr }}</td>
-                                            <td>{{ item.hsnCode }}</td>
+                                            <td>{{ item.sapNumber }}</td>
+                                            <td>{{ item.sacNumber }}</td>
                                             <td>{{ item.unit }}</td>
                                             <td>{{ item.quantity }}</td>
                                             <td>{{ item.rate }}</td>

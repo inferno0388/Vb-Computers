@@ -9,6 +9,8 @@ import { authService } from '../services/authService.component';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 import { error } from 'jquery';
+import { GenericBillComponent } from '../generic-bill/generic-bill.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -17,8 +19,13 @@ import { error } from 'jquery';
   providers: [DatePipe],
 })
 export class HistoryComponent implements OnInit {
-  constructor(private authService: authService, private datePipe: DatePipe) {}
+  constructor(
+    private authService: authService,
+    private datePipe: DatePipe,
+    private router: Router
+  ) {}
 
+  genericBill = new GenericBillComponent();
   ngOnInit() {
     this.fetchCompanies();
   }
@@ -98,38 +105,85 @@ export class HistoryComponent implements OnInit {
       );
   }
 
- 
   singleBill: any[] = [];
   rowForBill: any;
 
   viewBill(indexOfBill: number) {
     let bill = this.companyBillArray[indexOfBill];
-    console.log('array:;;;;;;;;', this.companyBillArray);
-    console.log('bill::::::::::::', bill);
 
-    for (let index = 0; index < bill.billDataDto.length; index++) {
-      this.rowForBill = {}; // Create a new object for each iteration
+    let billNumber = bill.billNumber;
+    console.log('billNumber: ', billNumber);
+    console.log(bill);
 
-      this.rowForBill.companyName = bill.companyName;
-      this.rowForBill.woPoNumber = bill.woPoNumber;
-      this.rowForBill.woPoDate = bill.woPoDate;
+    this.genericBill.generatePDF();
+    console.log('ho gayi.....');
+    this.authService.downloadBill(billNumber).subscribe(
+      (response: any) => {
+        console.log(response);
+        const pdfName = response.pdfName;
+        const pdfData = response.pdfData;
 
-      this.rowForBill.itemDescr = bill.billDataDto[index].itemDescr;
-      this.rowForBill.hsnCode = bill.billDataDto[index].hsnCode;
-      this.rowForBill.unit = bill.billDataDto[index].unit;
-      this.rowForBill.quantity = bill.billDataDto[index].quantity;
-      this.rowForBill.rate = bill.billDataDto[index].rate;
-      this.rowForBill.gst = bill.billDataDto[index].gst;
-      this.rowForBill.cgst = bill.billDataDto[index].cgst;
-      this.rowForBill.igst = bill.billDataDto[index].igst;
-      this.rowForBill.sgst = bill.billDataDto[index].sgst;
-      this.rowForBill.amount = bill.billDataDto[index].amount;
+        this.showPDF(pdfData, pdfName);
+      },
+      (error: any) => {
+        // Handle any errors that occurred during the API request
+        console.log(error); //.error.message
 
-      this.singleBill.push(this.rowForBill);
-      console.log('index row: ', this.rowForBill);
+        const errorMessage = error.error.message || 'An error occurred.';
+        Swal.fire({
+          title: 'Error',
+          text: errorMessage,
+          icon: 'error',
+        });
+      }
+    );
+  }
+
+  showPDF(data: string, fileName: string) {
+    const byteCharacters = atob(data);
+    const byteArray = new Uint8Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteArray[i] = byteCharacters.charCodeAt(i);
     }
 
-    // console.log(this.singleBill);
+    const blob = new Blob([byteArray], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+
+    // // Create an anchor element to trigger the download
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.target = '_blank';
+    // link.download = fileName;
+
+    // // Trigger the click event on the anchor element
+    // link.dispatchEvent(new MouseEvent('click'));
+
+    // // Clean up the temporary URL
+    // URL.revokeObjectURL(url);
+
+
+
+    // Open a new window or tab to display the PDF
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>${fileName}</title>
+          </head>
+          <body style="margin: 0;">
+            <embed width="100%" height="100%" src="${url}" type="application/pdf" download="${fileName}" />
+          </body>
+        </html>
+      `);
+      newWindow.document.close();
+    } else {
+      // Handle the case when the new window could not be opened
+      alert(
+        'Failed to open the PDF. Please check your pop-up blocker settings.'
+      );
+    }
   }
 
   downloadBill(indexOfBill: number) {
@@ -139,6 +193,8 @@ export class HistoryComponent implements OnInit {
     console.log('billNumber: ', billNumber);
     console.log(bill);
 
+    this.genericBill.generatePDF();
+    console.log('ho gayi.....');
     this.authService.downloadBill(billNumber).subscribe(
       (response: any) => {
         console.log(response);
@@ -149,13 +205,13 @@ export class HistoryComponent implements OnInit {
       },
       (error: any) => {
         // Handle any errors that occurred during the API request
-        console.log(error);//.error.message
+        console.log(error); //.error.message
 
         const errorMessage = error.error.message || 'An error occurred.';
         Swal.fire({
           title: 'Error',
           text: errorMessage,
-          icon: 'error'
+          icon: 'error',
         });
       }
     );
@@ -164,11 +220,11 @@ export class HistoryComponent implements OnInit {
   savePDF(data: string, fileName: string) {
     const byteCharacters = atob(data);
     const byteNumbers = new Array(byteCharacters.length);
-  
+
     for (let i = 0; i < byteCharacters.length; i++) {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
-  
+
     const byteArray = new Uint8Array(byteNumbers);
     const blob = new Blob([byteArray], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
@@ -177,10 +233,10 @@ export class HistoryComponent implements OnInit {
     link.download = fileName;
     link.click();
 
-       Swal.fire({
+    Swal.fire({
       title: 'Success',
       text: `pdf created with name: ${fileName}.pdf`,
-      icon: 'success'
+      icon: 'success',
     });
   }
 }

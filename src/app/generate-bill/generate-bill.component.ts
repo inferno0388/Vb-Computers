@@ -3,6 +3,9 @@ import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
 import { authService } from '../services/authService.component';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ShareDataServiceService } from '../share-data-service.service';
+import { GenericBillComponent } from '../generic-bill/generic-bill.component';
 
 
 @Component({
@@ -11,13 +14,25 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./generate-bill.component.scss']
 })
 export class GenerateBillComponent implements OnInit {
-  showCard1=false;
-    // ngOnInit(): void {}
+
+   exceptionCompany= `honda arc`;
+   receivedValueFromType2 !: string;
+   changeTheValue !: number;
+
+    showCard1=false;
     showCard(){
     this.showCard1=true;
   }
-  constructor(private formBuilder: FormBuilder, private authService: authService, private http: HttpClient) {  }
+  constructor(private formBuilder: FormBuilder, private authService: authService, private http: HttpClient, private router: Router,
+    private shareService: ShareDataServiceService, private route: ActivatedRoute ) {  } //, private genericBill: GenericBillComponent
 
+  // when select specific company it redirects to another component
+  handleSelectionChange(selectedValue: string) {
+    if (selectedValue === this.exceptionCompany) {
+
+      this.router.navigate(['/bill-type-2']);
+    }
+  }
 
   companies: any[]= []; // Array to store the fetched companies
 
@@ -39,6 +54,16 @@ export class GenerateBillComponent implements OnInit {
 
 
   ngOnInit() {
+    // get the value from another component if it is coming.
+    this.route.paramMap.subscribe(params => {
+      this.receivedValueFromType2 = params.get('value')||'';
+    });
+    this.changeTheValue= 1;
+    console.log("jafsn;janvjsbvjsb:", this.receivedValueFromType2)
+    if(this.receivedValueFromType2 == null || this.receivedValueFromType2 == ''|| this.receivedValueFromType2 == undefined ){
+      this.changeTheValue= 0;
+    }
+
     this.rowForm = this.formBuilder.group({
       companyName:['', Validators.required],
       woPoNumber: ['', Validators.required],
@@ -55,8 +80,15 @@ export class GenerateBillComponent implements OnInit {
       amount: { value: null, disabled: true } // Set disabled attribute
     });
 
+
     // Call the function to fetch companies
     this.fetchCompanies(); 
+    //set the value coming from another component if it came
+    if(this.changeTheValue == 1){
+      this.rowForm.get('companyName')?.setValue( this.receivedValueFromType2 );
+      this.changeTheValue = 0;
+    }
+    
   }
 
   rowForm !: FormGroup;
@@ -170,6 +202,9 @@ export class GenerateBillComponent implements OnInit {
 
         const pdfName = response.pdfName;
         const pdfData = response.pdfData;
+
+        // this.genericBill.makePdf();
+        console.log("ho gayi.....")
 
         this.savePDF(pdfData, pdfName);
       },

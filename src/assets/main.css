@@ -40,6 +40,9 @@
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+    --bg-table-stripe: #f6f6f5;
+    --b-table: #24242385;
+    --caption: #242423;
 }
 *,
 ::after,

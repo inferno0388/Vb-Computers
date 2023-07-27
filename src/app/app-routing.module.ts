@@ -6,6 +6,8 @@ import { GenerateBillComponent } from './generate-bill/generate-bill.component';
 import { HistoryComponent } from './history/history.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
+import { BillSecondComponent } from './bill-second/bill-second.component';
+import { GenericBillComponent } from './generic-bill/generic-bill.component';
 
 const routes: Routes = [
 { path: 'dashboard', component: DashboardComponent },  
@@ -14,6 +16,8 @@ const routes: Routes = [
 { path: 'history', component:  HistoryComponent}, 
 { path: 'create-user', component:  CreateUserComponent}, 
 { path: 'add-company', component:  AddCompanyComponent}, 
+{ path: 'bill-type-2', component:  BillSecondComponent}, 
+{ path: 'generic-bill', component:  GenericBillComponent}, 
 
 ];
 

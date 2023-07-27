@@ -22,6 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { DatePipe } from '@angular/common';
+import { BillSecondComponent } from './bill-second/bill-second.component';
+import { GenericBillComponent } from './generic-bill/generic-bill.component';
 
 
 
@@ -40,7 +42,9 @@ import { DatePipe } from '@angular/common';
     ServicesComponent,
     PopupFormComponent,
     ErrorDialogComponent,
-    AddCompanyComponent
+    AddCompanyComponent,
+    BillSecondComponent,
+    GenericBillComponent
 
   ],
   imports: [

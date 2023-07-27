@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
   })
 
   export class authService {
-
     url: string= 'http://localhost:8080';
 
     //get the token from local storage and add in header
@@ -78,6 +77,10 @@ import { Observable } from 'rxjs';
             cgst: data[i].cgst,
             gst: data[i].gst,
             hsnCode: data[i].hsnCode,
+            // 2 fields for dif. bill
+            sapNumber:data[i].sapNumber,
+            sacNumber:data[i].sacNumber,
+
             igst: data[i].igst,
             itemDescr: data[i].itemDescr,
             quantity: data[i].quantity,
@@ -137,8 +140,11 @@ import { Observable } from 'rxjs';
 
   downloadBill(billNumber: string): Observable<any> {
 
-
     return this.http.post(`http://localhost:8080/api/v1/history/downloadbillByNumber`, {billNumber: billNumber}  , { 'headers': this.headers });
+  }
+  getSapNumber(inputValue: number): Observable<any> {
+
+    return this.http.get(`http://localhost:8080/api/v1/bill/getSapNumber/${inputValue}`, this.httpOptions);
   }
 }
 

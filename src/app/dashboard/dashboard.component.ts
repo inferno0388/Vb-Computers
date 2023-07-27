@@ -15,15 +15,6 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
     this.getCompanies(); // Call the method when the component initializes
 
-    // this.rowForm = this.formBuilder.group({
-    //   companyName:['', Validators.required],
-    //   companyGstin:['', Validators.required],
-    //   address:['', Validators.required],
-    //   contactNo1:['', Validators.required],
-    //   cinNo:[''],  
-    //   companyEmail:[''],  
-    //   image: ['']
-    // });
   }
 
   rowForm !: FormGroup;
@@ -61,7 +52,21 @@ export class DashboardComponent implements OnInit{
         });
     } );
   }
+
+  checkCompany(): void{
+    if(this.companyNamesArray.length == 0){
+
+      this.getCompanies();      
+    }
+  }
+  
+  
 }
+
+
+
+
+
 
  // showForm = false; //  property to show  the form to save company 
   // toggleForm() {    //  shows the form to save company  based on showform value

@@ -31,6 +31,16 @@ export class CreateUserComponent implements OnInit {
 
   createUser(){
     console.log("formgroup",this.formGroup.value)
+
+    if(this.formGroup.value.password != this.formGroup.value.cpassword){
+      Swal.fire({
+        title: 'Info',
+        text: `password and confirm password does not match!`,
+        icon: 'info'
+      });
+      return;
+    }
+
     this.authService.createUser(this.formGroup.value)
         .subscribe((result)=>{
           console.log(result);

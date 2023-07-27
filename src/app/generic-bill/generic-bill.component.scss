@@ -1,0 +1,143 @@
+
+  @media print {
+    .bbtm {
+        border-bottom: 1px solid transparent !important;
+      }
+      .bdr td {
+        border-bottom: 1px solid transparent !important;
+      }
+      .wrapper {
+        width: 100%;
+        margin: 100px auto;
+      }
+    
+      :root {
+        --bg-table-stripe: #f6f6f5;
+        --b-table: #24242385;
+        --caption: #242423;
+      }
+    
+      table {
+        background-color: transparent;
+        border-collapse: collapse;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    
+      th {
+        text-align: left;
+      }
+    
+      .dcf-txt-center {
+        text-align: center !important;
+      }
+    
+      .dcf-txt-left {
+        text-align: left !important;
+      }
+    
+      .dcf-txt-right {
+        text-align: right !important;
+      }
+    
+      .dcf-table caption {
+        color: var(--caption);
+        font-size: 1.13em;
+        font-weight: 700;
+        padding-bottom: 0.56rem;
+      }
+    
+      .dcf-table thead {
+        font-size: 0.7em;
+      }
+    
+      .dcf-table tbody {
+        border-bottom: 1px solid var(--b-table);
+        border-top: 1px solid var(--b-table);
+        font-size: 0.7em;
+      }
+    
+      .dcf-table tfoot {
+        font-size: 0.84em;
+      }
+    
+      .dcf-table td,
+      .dcf-table th {
+        padding-right: 1.78em;
+      }
+    
+      .dcf-table-bordered,
+      .dcf-table-bordered td,
+      .dcf-table-bordered th {
+        border: 1px solid var(--b-table) !important;
+      }
+    
+      .dcf-table-bordered td,
+      .dcf-table-bordered th,
+      .dcf-table-striped td,
+      .dcf-table-striped th {
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+    
+      .dcf-table-bordered tr:not(:last-child),
+      .dcf-table-striped tr:not(:last-child) {
+        border-bottom: 1px solid var(--b-table);
+      }
+    
+      .dcf-table-striped tbody tr:nth-of-type(2n) {
+        background-color: transparent;
+      }
+    
+      .dcf-table thead td,
+      .dcf-table thead th {
+        padding-bottom: 0.75em;
+        vertical-align: bottom;
+      }
+    
+      .dcf-table tbody td,
+      .dcf-table tbody th,
+      .dcf-table tfoot td,
+      .dcf-table tfoot th {
+        padding-top: 0.75em;
+        vertical-align: top;
+      }
+    
+      .dcf-table tbody td,
+      .dcf-table tbody th {
+        padding-bottom: 0.75em;
+      }
+    
+      .dcf-table-bordered thead th {
+        padding-top: 1.33em;
+      }
+    
+      .dcf-wrapper-table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding-bottom: 1em;
+        position: relative;
+        right: 50%;
+        width: 100vw;
+      }
+    
+    
+    
+      .dcf-overflow-x-auto {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+    
+      .dcf-w-100\% {
+        width: 100% !important;
+      }
+      .bdt td {
+        border-top: 1px solid #24242385 !important;
+      }
+      .bdright {
+        border-right: 1px solid transparent !important;
+      }
+    
+  }
